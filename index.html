@@ -1,0 +1,155 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>深圳共享单车骑行时空分析与需求预测平台</title>
+  <style>
+    :root {
+      --ink: #1f2937;
+      --ink-2: #4b5563;
+      --line: #e5e7eb;
+      --bg: #f7f8fa;
+      --card: #ffffff;
+      --brand: #1f4e79;
+      --brand-soft: #eef3f8;
+    }
+    * { box-sizing: border-box; }
+    body {
+      margin: 0;
+      background: var(--bg);
+      color: var(--ink);
+      font-family: "Microsoft YaHei", "PingFang SC", "Hiragino Sans GB", Arial, sans-serif;
+      line-height: 1.75;
+      font-size: 15px;
+    }
+    .wrap { max-width: 920px; margin: 0 auto; padding: 40px 24px 56px; }
+    header { border-bottom: 3px solid var(--brand); padding-bottom: 20px; margin-bottom: 28px; }
+    h1 { font-size: 26px; margin: 0 0 8px; letter-spacing: 0.5px; }
+    .sub { color: var(--ink-2); font-size: 14px; }
+    .tag {
+      display: inline-block; margin-right: 8px; margin-top: 10px;
+      padding: 2px 10px; font-size: 12px; color: var(--brand);
+      background: var(--brand-soft); border: 1px solid #d6e2ee; border-radius: 3px;
+    }
+    section {
+      background: var(--card); border: 1px solid var(--line); border-radius: 4px;
+      padding: 22px 26px; margin-bottom: 18px;
+    }
+    h2 {
+      font-size: 16px; margin: 0 0 12px; padding-left: 10px;
+      border-left: 3px solid var(--brand); line-height: 1.2;
+    }
+    p { margin: 0 0 10px; color: var(--ink-2); }
+    ul { margin: 0; padding-left: 20px; color: var(--ink-2); }
+    li { margin-bottom: 6px; }
+    table { width: 100%; border-collapse: collapse; font-size: 14px; }
+    th, td { text-align: left; padding: 8px 10px; border-bottom: 1px solid var(--line); vertical-align: top; }
+    th { width: 34%; color: var(--ink); font-weight: 600; background: #fafbfc; }
+    td { color: var(--ink-2); }
+    a { color: var(--brand); text-decoration: none; }
+    a:hover { text-decoration: underline; }
+    .note {
+      font-size: 13px; color: var(--ink-2);
+      background: #fafbfc; border-left: 3px solid #c9d6e2;
+      padding: 10px 14px; margin-top: 12px;
+    }
+    footer {
+      margin-top: 32px; padding-top: 16px; border-top: 1px solid var(--line);
+      font-size: 12px; color: #9ca3af; display: flex;
+      justify-content: space-between; flex-wrap: wrap; gap: 8px;
+    }
+  </style>
+</head>
+<body>
+  <div class="wrap">
+    <header>
+      <h1>深圳共享单车骑行时空分析与需求预测平台</h1>
+      <div class="sub">本科毕业设计项目 · 城市交通大数据方向</div>
+      <div>
+        <span class="tag">数据清洗</span>
+        <span class="tag">时空可视化</span>
+        <span class="tag">片区聚类</span>
+        <span class="tag">需求预测</span>
+        <span class="tag">智能问答</span>
+      </div>
+    </header>
+
+    <section>
+      <h2>项目简介</h2>
+      <p>
+        本项目面向城市共享单车运营中的数据分析需求，基于深圳市政府数据开放平台提供的共享单车企业每日订单数据，
+        构建覆盖「数据接入—清洗治理—时空分析—模型实验—知识问答」的完整平台。
+      </p>
+      <p>
+        系统分为离线数据分析流水线与在线 Web 服务两部分：离线侧完成数据获取、清洗、特征派生与知识库构建；
+        在线侧提供六类功能页面，支持行政区级热力分布、时段与工作日/周末对比、OD 流向、片区聚类、异常骑行识别、
+        区域骑行需求预测以及基于检索增强的智能问答。
+      </p>
+    </section>
+
+    <section>
+      <h2>数据来源与合规说明</h2>
+      <table>
+        <tr>
+          <th>数据提供方</th>
+          <td>深圳市政府数据开放平台（<a href="https://opendata.sz.gov.cn" target="_blank" rel="noopener">opendata.sz.gov.cn</a>）</td>
+        </tr>
+        <tr>
+          <th>数据集名称</th>
+          <td>共享单车企业每日订单表（数据集编号 29200_00403627）</td>
+        </tr>
+        <tr>
+          <th>数据内容</th>
+          <td>用户 ID、企业 ID、起止时间、起止经纬度</td>
+        </tr>
+        <tr>
+          <th>使用方式</th>
+          <td>通过平台开放接口按时间范围分页获取，仅用于本科毕业设计中的学术研究与技术验证</td>
+        </tr>
+      </table>
+      <div class="note">
+        数据已由数据提供方进行脱敏处理。本项目不存储、不展示任何可直接识别个人身份的信息，
+        不用于商业用途；地图展示所使用的地理边界数据仅用于可视化呈现。
+      </div>
+    </section>
+
+    <section>
+      <h2>系统功能模块</h2>
+      <ul>
+        <li><strong>数据管理：</strong>原始数据导入、增量与覆盖导入、清洗流水线与清洗报告、筛选预览与条件导出。</li>
+        <li><strong>可视化分析：</strong>订单总量与均值指标、行政区热力、日/周时序、小时高峰曲线、天气对比、时长与距离分布、OD 流向。</li>
+        <li><strong>时空挖掘：</strong>片区 K-Means 聚类与肘部法则选 K、孤立森林异常骑行识别。</li>
+        <li><strong>需求预测：</strong>按行政区训练 LSTM 与 ARIMA，预测未来 14 天订单量，输出 RMSE / MAE / R² 对比。</li>
+        <li><strong>智能问答：</strong>基于系统内统计结论与模型指标构建知识库，检索增强回答并标注来源，低于阈值时拒答。</li>
+        <li><strong>系统管理：</strong>账号登录与角色区分、操作日志、异步训练任务状态、接口文档。</li>
+      </ul>
+    </section>
+
+    <section>
+      <h2>技术栈</h2>
+      <table>
+        <tr><th>后端</th><td>Python、FastAPI、Pandas、NumPy、Scikit-learn、PyTorch、statsmodels、FAISS</td></tr>
+        <tr><th>前端</th><td>Vue 3、Pinia、ECharts</td></tr>
+        <tr><th>数据库</th><td>MySQL 8</td></tr>
+        <tr><th>文档</th><td>Swagger / OpenAPI 自动生成接口文档</td></tr>
+      </table>
+    </section>
+
+    <section>
+      <h2>研究目标</h2>
+      <ul>
+        <li>建立可复现的共享单车订单数据清洗与特征派生流程；</li>
+        <li>量化呈现骑行需求的时空分布特征与片区差异；</li>
+        <li>对比时序模型在区域订单量预测上的表现并给出评估指标；</li>
+        <li>验证检索增强问答在结构化统计数据上的可用性与拒答机制。</li>
+      </ul>
+    </section>
+
+    <footer>
+      <span>本项目为本科毕业设计作品，非商业应用</span>
+      <span>页面更新：2026-11</span>
+    </footer>
+  </div>
+</body>
+</html>
